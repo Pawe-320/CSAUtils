@@ -8,6 +8,10 @@ const config = defineConfig([
   ts.configs.recommended, // Specialized TS rules
   {
     // Your custom overrides
+    rules: {
+      "@typescript-eslint/no-unused-vars": "warn"
+    
+    }
   }
 ])
 

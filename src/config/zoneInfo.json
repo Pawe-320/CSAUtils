@@ -1,0 +1,52 @@
+{
+  "1": {
+    "prefix": "SW",
+    "location": "Stepford Rail Operations Centre",
+    "stations": "Willowfield <-> Stepford Victoria\nStepford Bay Branch\nCity Hospital"
+  },
+  "2": {
+    "prefix": "SC",
+    "location": "Stepford Rail Operations Centre",
+    "stations": "Stepford Central <-> High Street (Including Metro stations)\nWhitefield Branch"
+  },
+  "3": {
+    "prefix": "YB",
+    "location": "Berrily Rail Operations Centre",
+    "stations": "St Helens Bridge <-> Coxly\nSt Helens Bridge <-> East Berrily\nRobinson Way Branch\nBarton Loop"
+  },
+  "4": {
+    "prefix": "BN",
+    "location": "Benton Signalling Box",
+    "stations": "Newry Harbour <-> West Benton"
+  },
+  "5": {
+    "prefix": "BE",
+    "location": "Benton Signalling Box",
+    "stations": "Benton <-> Connolly\nPort Benton"
+  },
+  "6": {
+    "prefix": "GH",
+    "location": "Hampton Hargate Signalling Centre",
+    "stations": "Morganstown <-> Morganstown Docks\nWhitney Green\nBenton Bridge <-> Upper Staplope"
+  },
+  "7": {
+    "prefix": "AC",
+    "location": "Airport Signalling Centre",
+    "stations": "Airport Parkway <-> Terminal 3\nTerminal 2"
+  },
+  "8": {
+    "prefix": "AE",
+    "location": "Airport Signalling Centre",
+    "stations": "Airport West <-> Esterfield"
+  },
+  "9": {
+    "prefix": "LE",
+    "location": "Llyn Rail Operations Centre",
+    "stations": "Water Newton <-> Millcastle Racecourse\nLeighton West\nRayleigh Bay Branch"
+  },
+  "10": {
+    "prefix": "LN",
+    "location": "Llyn Rail Operations Centre",
+    "stations": "Llyn-by-the-sea <-> Millcastle"
+  }
+}

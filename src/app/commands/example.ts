@@ -8,6 +8,7 @@ export const command: CommandData = {
   contexts: [
     InteractionContextType.BotDM,
     InteractionContextType.PrivateChannel,
+    InteractionContextType.Guild,
   ],
 };
 

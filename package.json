@@ -12,6 +12,10 @@
     "fix": "eslint --fix src/**",
     "commit": "pnpm run lint && pnpm run format && git add . && git commit && git push origin feature"
   },
+  "imports": {
+    "#src": "./src/",
+    "#config": "src/config/*"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -25,6 +29,7 @@
   "dependencies": {
     "@commandkit/devtools": "1.2.0-rc.14",
     "commandkit": "1.2.0-rc.14",
+    "discloud": "^1.5.1",
     "discord.js": "^14.25.1",
     "dotenv": "^17.3.1"
   }

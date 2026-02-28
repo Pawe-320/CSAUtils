@@ -1,0 +1,49 @@
+{
+  "1772312400": {
+    "session": {
+      "type": "practice",
+      "timestamp": "<t:1772312400:R>",
+      "host": "Pawe_320",
+      "supervisor": "mmmnnntttfffe"
+    },
+    "trainees": {
+      "usernames": [
+        "MisterToll1",
+        "SirSerdesh",
+        "Dator789",
+        "DeeZee172010"
+      ],
+      "ids": [
+        "883064661677862912",
+        "513350499441967149",
+        "772078516048756748",
+        "1104723183099195432"
+      ],
+      "priority": [
+        "ST",
+        "ST",
+        "ST",
+        "ST"
+      ],
+      "zone": [
+        "6",
+        "7",
+        "7",
+        "10"
+      ],
+      "trains": [
+        "Max",
+        "Max",
+        "Max",
+        "Max"
+      ],
+      "lf": [
+        true,
+        false,
+        true,
+        true,
+        false
+      ]
+    }
+  }
+}
