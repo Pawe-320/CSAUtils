@@ -53,7 +53,7 @@ export const autocomplete: AutocompleteCommand = async ({ interaction }) => {
       // 2. Loop through each trainee in this specific session
       sessionData.trainees.usernames.forEach(
         (username: string, index: number) => {
-          const displayName = `${timeString} - ${username}`;
+          const displayName = `${timeString} - ${username} // Zone ${sessionData.trainees.zone[index]} // ${sessionData.trainees.trains[index]} Trains // ${sessionData.trainees.lf[index] ? "LF" : "No LF"}`;
 
           choices.push({
             name: displayName,
@@ -88,7 +88,6 @@ export const chatInput: ChatInputCommand = async (ctx) => {
       ?.split("-")[1] as string,
   };
 
-  Logger.log(JSON.stringify(commandOptions, null, 2));
   const rawData = await fs.readFile("sessionInfo.json", "utf-8");
   const jsonData = JSON.parse(rawData);
 
@@ -97,9 +96,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
     const defaultDrivers = [];
 
     const trainee =
-      jsonData[commandOptions.session].trainees.ids[
-        String(commandOptions.trainee)
-      ];
+      jsonData[commandOptions.session].trainees.ids[commandOptions.trainee];
     const drivers = jsonData[commandOptions.session]?.drivers?.ids ?? [];
     defaultDrivers.push(...drivers);
     defaultDrivers.push(
@@ -107,13 +104,19 @@ export const chatInput: ChatInputCommand = async (ctx) => {
         (e: string) => e != trainee,
       ),
     );
-    Logger.log([trainee, defaultDrivers]);
-    return defaultDrivers;
+    return defaultDrivers.slice(
+      0,
+      jsonData[commandOptions.session].trainees.trains[
+        commandOptions.trainee
+      ] === "Max"
+        ? 99
+        : jsonData[commandOptions.session].trainees[commandOptions.trainee],
+    );
   };
 
   const modal = (
     <Modal
-      customId={`zoneModal-${jsonData[commandOptions.session].trainees.zone[String(commandOptions.trainee)]}-${commandOptions.trainee}`}
+      customId={`zoneModal-${commandOptions.session}-${commandOptions.trainee}`}
       title="Driver Selection Menu"
       onSubmit={zoneModalHandler}
     >
@@ -129,7 +132,10 @@ export const chatInput: ChatInputCommand = async (ctx) => {
           ]}
         />
       </Label>
-      <Label label="Select the drivers for this trainee">
+      <Label
+        label="Select the drivers for this trainee"
+        description="Not required if trainee requested max trains"
+      >
         <UserSelectMenu
           customId="drivers"
           maxValues={15}

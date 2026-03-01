@@ -10,7 +10,7 @@ export interface ISessionDataPlain {
     ids: string[];
     priority: string[];
     zone: string[];
-    trains: string[];
+    trains: number[];
     lf: boolean[];
   };
   drivers?: {

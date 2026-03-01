@@ -4,7 +4,7 @@ import {
   ApplicationIntegrationType,
   InteractionContextType,
 } from "discord.js";
-import * as fs from "node:fs";
+import * as fs from "node:fs/promises";
 
 export const command: CommandData = {
   name: "session-add",
@@ -27,7 +27,7 @@ export const command: CommandData = {
 
 export const chatInput: ChatInputCommand = async (ctx) => {
   const jsonFileContent = JSON.parse(
-    fs.readFileSync("sessionInfo.json", { encoding: "utf-8" }),
+    await fs.readFile("sessionInfo.json", { encoding: "utf-8" }),
   );
   const interaction = ctx.interaction;
   const commandOptions = {
@@ -36,7 +36,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
   jsonFileContent[
     parseInt(commandOptions.json.session.timestamp.replace("<t:", ""))
   ] = commandOptions.json;
-  fs.writeFileSync(
+  await fs.writeFile(
     "sessionInfo.json",
     JSON.stringify(jsonFileContent, null, 2),
   );
