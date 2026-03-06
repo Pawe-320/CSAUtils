@@ -3,7 +3,6 @@ import {
   ChatInputCommand,
   CommandData,
   Label,
-  Logger,
   Modal,
   UserSelectMenu,
 } from "commandkit";
@@ -15,6 +14,7 @@ import {
 import zoneModalHandler from "../modals/manageDriversModal";
 import * as fs from "node:fs/promises";
 import ISessionData from "@/types/ISessionData";
+import roles from "src/config/roles.json";
 
 export const command: CommandData = {
   name: "manage-drivers",
@@ -79,6 +79,19 @@ export const autocomplete: AutocompleteCommand = async ({ interaction }) => {
 
 export const chatInput: ChatInputCommand = async (ctx) => {
   const interaction = ctx.interaction;
+
+  if (!interaction.member) return;
+  const roleIds = Array.isArray(interaction.member.roles)
+    ? interaction.member.roles
+    : interaction.member.roles.cache.map((r) => r.id);
+  const allowedRoles = [roles.TAS, roles.JTR, roles.QTR];
+  const hasRole = allowedRoles.some((r) => roleIds.includes(r));
+  if (!hasRole)
+    return await interaction.reply({
+      content: ":x: You don't have enough permissions to run this command",
+      flags: "Ephemeral",
+    });
+
   const commandOptions = {
     session: interaction.options
       .getString("session-trainee")
@@ -108,7 +121,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
       0,
       jsonData[commandOptions.session].trainees.trains[
         commandOptions.trainee
-      ] === "Max"
+      ] === 99
         ? 99
         : jsonData[commandOptions.session].trainees[commandOptions.trainee],
     );
