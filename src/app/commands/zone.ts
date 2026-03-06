@@ -6,7 +6,7 @@ import {
   EmbedBuilder,
   InteractionContextType,
 } from "discord.js";
-
+import roles from "src/config/roles.json";
 const zoneNumbers = Object.keys(zoneInfo).map((e) => {
   return { name: e, value: e };
 });
@@ -59,6 +59,18 @@ export const chatInput: ChatInputCommand = async (ctx) => {
     .setDescription(
       `## Zone Information:\n**Desk:** ${zoneInfo[commandOptions.zone].location}\n**Signal Prefix:** __${zoneInfo[commandOptions.zone].prefix}__\n**Stations:**\n${zoneInfo[commandOptions.zone].stations}`,
     );
+
+  if (!interaction.member) return;
+  const roleIds = Array.isArray(interaction.member.roles)
+    ? interaction.member.roles
+    : interaction.member.roles.cache.map((r) => r.id);
+  const allowedRoles = [roles.TAS, roles.JTR, roles.QTR];
+  const hasRole = allowedRoles.some((r) => roleIds.includes(r));
+  if (!hasRole)
+    return await interaction.reply({
+      embeds: [embed],
+      flags: "Ephemeral",
+    });
 
   await interaction.reply({
     embeds: [embed],

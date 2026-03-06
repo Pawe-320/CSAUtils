@@ -5,6 +5,7 @@ import {
   InteractionContextType,
 } from "discord.js";
 import * as fs from "node:fs/promises";
+import roles from "src/config/roles.json";
 
 export const command: CommandData = {
   name: "session-add",
@@ -26,10 +27,23 @@ export const command: CommandData = {
 };
 
 export const chatInput: ChatInputCommand = async (ctx) => {
+  const interaction = ctx.interaction;
+  if (!interaction.member) return;
+
+  const roleIds = Array.isArray(interaction.member.roles)
+    ? interaction.member.roles
+    : interaction.member.roles.cache.map((r) => r.id);
+  const allowedRoles = [roles.TAS, roles.JTR, roles.QTR];
+  const hasRole = allowedRoles.some((r) => roleIds.includes(r));
+  if (!hasRole)
+    return await interaction.reply({
+      content: ":x: You don't have enough permissions to run this command",
+      flags: "Ephemeral",
+    });
+
   const jsonFileContent = JSON.parse(
     await fs.readFile("sessionInfo.json", { encoding: "utf-8" }),
   );
-  const interaction = ctx.interaction;
   const commandOptions = {
     json: JSON.parse(interaction.options.getString("json", true)),
   };
