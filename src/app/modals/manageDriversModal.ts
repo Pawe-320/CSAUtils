@@ -64,7 +64,7 @@ const zoneModalHandler: OnModalKitSubmit = async (ctx) => {
         : `(${neededTrains} needed total)`;
     content = `Drivers: ${pingString} ${countCheck}\nPlease drive in Zone ${zone}`;
   }
-
+  const embedTextIfTraining = currentSession.type === "pracitce" ? "" : `\n`;
   const embed = new EmbedBuilder()
     .setImage(zoneMapImg)
     .setColor("Aqua")

@@ -1,1 +1,43 @@
-{}
+{
+  "1772828100": {
+    "session": {
+      "type": "training",
+      "timestamp": "<t:1772828100:R>",
+      "host": "cdexstra1"
+    },
+    "trainees": {
+      "usernames": [
+        "SubbyHowl",
+        "Piko_H0",
+        "MisterToll1",
+        "DeeZee172010"
+      ],
+      "ids": [
+        "883064661677862912",
+        "1104723183099195432"
+      ],
+      "priority": [
+        "L4"
+      ],
+      "zone": [
+        "5",
+        "3",
+        "6",
+        "6"
+      ],
+      "trains": [
+        4,
+        5,
+        99,
+        99
+      ],
+      "lf": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  }
+}
