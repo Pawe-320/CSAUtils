@@ -53,7 +53,8 @@ export const autocomplete: AutocompleteCommand = async ({ interaction }) => {
       // 2. Loop through each trainee in this specific session
       sessionData.trainees.usernames.forEach(
         (username: string, index: number) => {
-          const displayName = `${timeString} ${sessionData.session.type} - ${username} // Zone ${sessionData.trainees.zone[index]} // ${sessionData.trainees.trains[index]} Trains ${sessionData.session.type == "practice" ? `// ${sessionData.trainees.lf[index] ? "LF" : "No LF"}` : `// Level: ${sessionData.trainees.level[index]} `}`;
+          const displayName = `${timeString} - ${username} // Zone ${sessionData.trainees.zone[index]} // ${sessionData.trainees.trains[index]} Trains // ${sessionData.trainees.lf[index] ? "LF" : "No LF"}`;
+
           choices.push({
             name: displayName,
             // Storing session key and trainee index so you know who to target later

@@ -1,6 +1,5 @@
 export interface ISessionDataPlain {
   session: {
-    type: "practice" | "training";
     timestamp: string;
     host: string;
     cohosts?: string[];
@@ -9,7 +8,7 @@ export interface ISessionDataPlain {
   trainees: {
     usernames: string[];
     ids: string[];
-    level?: string[];
+    priority: string[];
     zone: string[];
     trains: number[];
     lf: boolean[];
